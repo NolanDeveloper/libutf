@@ -82,7 +82,7 @@ bool libutf_c32_to_c8(uint_least32_t c32, int *length, char c8[4]);
  * character U+FFFD and false will be returned.
  * c8     -- pointer to UTF-8 sequence.
  * c32    -- where to save UTF-32 Unicode code point.
- * result -- true if c8 points to a valid UTF-8 sequence or false otherwise. */
+ * result -- true if c8 points to a valid UTF-8 sequence and c32 is not NULL or false otherwise. */
 bool libutf_c8_to_c32(const char *c8, uint_least32_t *c32);
 
 /* Convert UTF-32 Unicode code point into UTF-16 sequence. If c32 is not a valid

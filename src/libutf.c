@@ -41,7 +41,7 @@ bool libutf_c32_to_c8(uint_least32_t c32, int *length, char c8[4]) {
         return false;
     }
     if (c32 <= 0x007F) {
-        c8[0] = c32;
+        c8[0] = (char) c32;
         *length = 1;
         return true;
     } else if (c32 <= 0x07FF) {

@@ -55,7 +55,7 @@ typedef enum {
 
 /* Determine type of UTF-16 code unit. type = length of UTF-16 sequence starting with the specified code unit
  * or negative value if sequence cannot start with this code unit. */
-LibutfC16Type libutf_c16_type(uint_least16_t c16);
+LibutfC16Type libutf_c16_type(uint16_t c16);
 
 /* Determine type of UTF-8 sequence based on the first byte. type = length of UTF-8 sequence starting
  * with this byte or negative value if the byte cannot be first. UTF-8 may be up to 4 bytes long.
@@ -75,7 +75,7 @@ LibutfC8Type libutf_c8_type(char c);
  * length -- where to put length of the UTF-8 sequence.
  * c8     -- where to put UTF-8 sequence. Make sure string has enough space.
  * result -- true if c32 is a valid Unicode code point or false otherwise. */
-bool libutf_c32_to_c8(uint_least32_t c32, int *length, char c8[4]);
+bool libutf_c32_to_c8(uint32_t c32, int *length, char c8[4]);
 
 /* Convert UTF-8 sequence into a UTF-32 Unicode code point. If c8 does not
  * point to a valid UTF-8 sequence c32 will be filled with special replacement
@@ -83,7 +83,7 @@ bool libutf_c32_to_c8(uint_least32_t c32, int *length, char c8[4]);
  * c8     -- pointer to UTF-8 sequence.
  * c32    -- where to save UTF-32 Unicode code point.
  * result -- true if c8 points to a valid UTF-8 sequence and c32 is not NULL or false otherwise. */
-bool libutf_c8_to_c32(const char *c8, uint_least32_t *c32);
+bool libutf_c8_to_c32(const char *c8, uint32_t *c32);
 
 /* Convert UTF-32 Unicode code point into UTF-16 sequence. If c32 is not a valid
  * Unicode code point c16 will be filled with UTF-16 representation of special
@@ -92,7 +92,7 @@ bool libutf_c8_to_c32(const char *c8, uint_least32_t *c32);
  * length -- were to put length of UTF-16 sequence.
  * c16    -- where to put UTF-16 sequence (c16[0] -- high surrogate, c16[1] -- low surrogate)
  * result -- true if c32 is a valid Unicode code point or false otherwise. */
-bool libutf_c32_to_c16(uint_least32_t c32, int *length, uint_least16_t c16[2]);
+bool libutf_c32_to_c16(uint32_t c32, int *length, uint16_t c16[2]);
 
 /* Construct UTF-32 Unicode code point from UTF-16 surrogate pair. high
  * must be high surrogate and low must be low surrogate otherwise *c32 will
@@ -100,10 +100,10 @@ bool libutf_c32_to_c16(uint_least32_t c32, int *length, uint_least16_t c16[2]);
  * c16    -- where to put UTF-16 sequence (c32[0] -- high surrogate, c32[1] -- low surrogate)
  * result -- true if c16 points to a valid UTF-16 sequence (single not surrogate
  * or valid surrogate pair) or false otherwise. */
-bool libutf_c16_to_c32(uint_least16_t c16[2], uint_least32_t *c32);
+bool libutf_c16_to_c32(uint16_t c16[2], uint32_t *c32);
 
 /* Check whether given value is a valid Unicode code point i.e. below 0x110000 and is not
  * a UTF-16 surrogate. */
-bool libutf_c32_is_valid(uint_least32_t c32);
+bool libutf_c32_is_valid(uint32_t c32);
 
 #endif

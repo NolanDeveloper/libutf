@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <stdlib.h>
 
-LibutfC16Type libutf_c16_type(uint_least16_t c16) {
+LibutfC16Type libutf_c16_type(uint16_t c16) {
     if (0xD800 != (0xF800 & c16)) {
         return LIBUTF_UTF16_NOT_SURROGATE;
     }
@@ -32,7 +32,7 @@ LibutfC8Type libutf_c8_type(char c) {
     return lookup_table[(unsigned char) c];
 }
 
-bool libutf_c32_to_c8(uint_least32_t c32, int *length, char c8[4]) {
+bool libutf_c32_to_c8(uint32_t c32, int *length, char c8[4]) {
     if (!libutf_c32_is_valid(c32)) {
         *length = 3;
         c8[0] = (char) 0xEF;
@@ -65,7 +65,7 @@ bool libutf_c32_to_c8(uint_least32_t c32, int *length, char c8[4]) {
     return true;
 }
 
-bool libutf_c8_to_c32(const char *c8, uint_least32_t *c32) {
+bool libutf_c8_to_c32(const char *c8, uint32_t *c32) {
     if (!c8 || !c32) {
         return false;
     }
@@ -76,7 +76,7 @@ bool libutf_c8_to_c32(const char *c8, uint_least32_t *c32) {
         return false;
     }
     int len = type;
-    uint_least32_t result;
+    uint32_t result;
     switch (len) {
     case 1:
         *c32 = c;
@@ -114,7 +114,7 @@ bool libutf_c8_to_c32(const char *c8, uint_least32_t *c32) {
     return true;
 }
 
-bool libutf_c32_to_c16(uint_least32_t c32, int *length, uint_least16_t c16[2]) {
+bool libutf_c32_to_c16(uint32_t c32, int *length, uint16_t c16[2]) {
     if (!libutf_c32_is_valid(c32)) {
         c16[0] = 0xFFFD;
         c16[1] = 0;
@@ -134,7 +134,7 @@ bool libutf_c32_to_c16(uint_least32_t c32, int *length, uint_least16_t c16[2]) {
     return true;
 }
 
-bool libutf_c16_to_c32(uint_least16_t c16[2], uint_least32_t *c32) {
+bool libutf_c16_to_c32(uint16_t c16[2], uint32_t *c32) {
     LibutfC16Type type = libutf_c16_type(c16[0]);
     if (LIBUTF_UTF16_NOT_SURROGATE == type) {
         *c32 = c16[0];
@@ -148,6 +148,6 @@ bool libutf_c16_to_c32(uint_least16_t c16[2], uint_least32_t *c32) {
     return true;
 }
 
-bool libutf_c32_is_valid(uint_least32_t c32) {
+bool libutf_c32_is_valid(uint32_t c32) {
     return c32 < 0xD800 || (0xDFFF < c32 && c32 < 0x110000);
 }

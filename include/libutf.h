@@ -71,7 +71,7 @@ LibutfC8Type libutf_c8_type(char c);
 /* Convert Unicode code point into UTF-8 sequence. If c32 is not a valid
  * Unicode code point c8 will be filled with UTF-8 representation of special
  * replacement character U+FFFD, *length will be set to its length and false will be returned.
- * c32    -- UTF-32 Unicode code point
+ * c32    -- UTF-32 Unicode code point.
  * length -- where to put length of the UTF-8 sequence.
  * c8     -- where to put UTF-8 sequence. Make sure string has enough space.
  * result -- true if c32 is a valid Unicode code point or false otherwise. */
@@ -89,7 +89,7 @@ bool libutf_c8_to_c32(const char *c8, uint32_t *c32);
  * Unicode code point c16 will be filled with UTF-16 representation of special
  * replacement character U+FFFD and false will be returned.
  * c32    -- UTF-32 Unicode code point.
- * length -- were to put length of UTF-16 sequence.
+ * length -- where to put length of UTF-16 sequence.
  * c16    -- where to put UTF-16 sequence (c16[0] -- high surrogate, c16[1] -- low surrogate)
  * result -- true if c32 is a valid Unicode code point or false otherwise. */
 bool libutf_c32_to_c16(uint32_t c32, int *length, uint16_t c16[2]);
